@@ -11,25 +11,23 @@ public class part1 {
         int Goal = in.nextInt();
         int MAX_SIZE = 3*Goal;
         ans.put(0, 0);
-        //ans.put(20,12);
         //q.add(Integer.toString(0) + " " + Integer.toString(0) + " " +Integer.toString(1));
         int[][] qq;
-        qq = new int[3][4000000];
+        qq = new int[3][40000000];
         qq[0][0] = 0;
         qq[1][0] = 0;
         qq[2][0] = 1;
         int left = 0;
         int right = 1;
         visited.add(Integer.toString(0) + " " +Integer.toString(1));
-        while (left != right){
-            ans.put(5,7);
+        while ((left != right) && ((right+4)<40000000)){
             int d = qq[0][left];
             int p = qq[1][left];
             int v = qq[2][left];
             left++;
 
             if ((Math.abs(p+v) <= MAX_SIZE) && (Math.abs(2*v)<=MAX_SIZE)){
-                if (visited.add(Integer.toString(p+v) + " " +Integer.toString(2*v))) {
+                //if (visited.add(Integer.toString(p+v) + " " +Integer.toString(2*v))) {
                     if ((ans.get(p + v) == null) || (ans.get(p + v) > d + 1)) {
                         ans.put(p + v, d + 1);
                     }
@@ -38,11 +36,11 @@ public class part1 {
                     qq[0][right] = d+1;
                     qq[1][right] = p+v;
                     qq[2][right] = 2*v;
-                }
+                //}
             }
             int dd = (v > 0 ? -1:1);
             if ((Math.abs(p+dd) <= MAX_SIZE)){
-                if (visited.add(Integer.toString(p+dd) + " " +Integer.toString(2*dd))) {
+                //if (visited.add(Integer.toString(p+dd) + " " +Integer.toString(2*dd))) {
                     if ((ans.get(p + dd) == null) || (ans.get(p + dd) > d + 2)) {
                         ans.put(p + dd, d + 2);
                     }
@@ -51,10 +49,10 @@ public class part1 {
                     qq[0][right] = d+2;
                     qq[1][right] = p+dd;
                     qq[2][right] = 2*dd;
-                }
+                //}
             }
             if ((Math.abs(p-dd) <= MAX_SIZE)){
-                if (visited.add(Integer.toString(p-dd) + " " +Integer.toString(-2*dd))) {
+                //if (visited.add(Integer.toString(p-dd) + " " +Integer.toString(-2*dd))) {
                     if ((ans.get(p - dd) == null) || (ans.get(p - dd) > d + 3)) {
                         ans.put(p - dd, d + 3);
                     }
@@ -63,11 +61,13 @@ public class part1 {
                     qq[0][right] = d+3;
                     qq[1][right] = p-dd;
                     qq[2][right] = -2*dd;
-                }
+                //}
             }
         }
         System.out.println(ans.get(Goal));
+        /*for (int i = 100; i<200; i++){
+            System.out.println(i + " " + ans.get(i));
+        }*/
+
     }
 }
-
-
